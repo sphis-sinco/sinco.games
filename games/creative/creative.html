@@ -1,11 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sinco Games - Creative</title>
 </head>
+
 <body>
     <a href="../../index.html">Back</a>
+    <hr>
+    <h3 id="latestVer">Latest version: v0.3.3_02</h3>
+
+    <hr>
+    <a href="https://github.com/sphis-sinco/Creative">Github</a><br>
+    <a href="https://github.com/sphis-sinco/Creative/actions">Github Actions</a><br><br>
+
+
+    <a href="./creative.html" id="windows">Windows download</a><br>
+    <a href="./creative.html" id="mac">Mac download</a><br>
+    <a href="./creative.html" id="linux">Linux download</a><br>
+    <a href="./creative.html" id="web">Web version</a>
+
+    <script>
+        var windows_artifact = "https://github.com/sphis-sinco/Creative/actions/runs/15943595191/artifacts/3424472235"
+        var mac_artifact = "https://github.com/sphis-sinco/Creative/actions/runs/15943595191/artifacts/3424471831"
+        var linux_artifact = "https://github.com/sphis-sinco/Creative/actions/runs/15943595191/artifacts/3424470634"
+
+        document.getElementById('windows').href = windows_artifact
+        document.getElementById('mac').href = mac_artifact
+        document.getElementById('linux').href = linux_artifact
+
+        var ver = 'https://raw.githubusercontent.com/sphis-sinco/Creative/refs/heads/main/version.txt'
+
+        fetch(ver)
+            .then(response => response.text())
+            .then(data => {
+                const version = 'v' + data.trim();
+                console.log("Version:", version);
+                document.getElementById('latestVer').innerHTML = 'Latest version: ' + version;
+            })
+            .catch(error => {
+                console.error('Error fetching version:', error);
+                document.getElementById('latestVer').innerHTML = 'Latest version: [Error fetching version]';
+            });
+    </script>
+
 </body>
+
 </html>
